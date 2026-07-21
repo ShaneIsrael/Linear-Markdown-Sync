@@ -1,0 +1,85 @@
+{
+  "name": "linear-markdown-sync",
+  "displayName": "Linear Markdown Sync",
+  "description": "Sync Linear issues down into local markdown files, with screenshots and attachments, one folder per ticket.",
+  "version": "0.1.0",
+  "publisher": "ascensiondata",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linearMarkdownSync.setApiKey",
+        "title": "Linear Markdown Sync: Set Personal API Key",
+        "category": "Linear Markdown Sync"
+      },
+      {
+        "command": "linearMarkdownSync.clearApiKey",
+        "title": "Linear Markdown Sync: Clear API Key",
+        "category": "Linear Markdown Sync"
+      },
+      {
+        "command": "linearMarkdownSync.syncNow",
+        "title": "Linear Markdown Sync: Sync Now",
+        "category": "Linear Markdown Sync"
+      }
+    ],
+    "configuration": {
+      "title": "Linear Markdown Sync",
+      "properties": {
+        "linearMarkdownSync.rootFolder": {
+          "type": "string",
+          "default": "linear",
+          "markdownDescription": "Folder that contains one subfolder per Linear ticket (named by identifier, e.g. `eng-730`). Relative paths resolve against the first workspace folder; absolute paths are used as-is."
+        },
+        "linearMarkdownSync.syncIntervalMinutes": {
+          "type": "number",
+          "default": 0,
+          "markdownDescription": "Automatically run a sync pass on this interval, in minutes. Set to `0` to disable interval syncing (manual command, activation, and new-folder detection still work)."
+        },
+        "linearMarkdownSync.syncOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run a sync pass when the extension activates."
+        },
+        "linearMarkdownSync.watchForNewFolders": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically sync a ticket folder when it is created inside the root folder."
+        },
+        "linearMarkdownSync.includeComments": {
+          "type": "boolean",
+          "default": false,
+          "description": "Append issue comments to issue.md (also downloads images embedded in comments)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "typecheck": "tsc --noEmit",
+    "vsix": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@linear/sdk": "^37.0.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
+  }
+}
