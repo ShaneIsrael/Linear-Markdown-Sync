@@ -4,6 +4,10 @@
   "description": "Sync Linear issues down into local markdown files, with screenshots and attachments, one folder per ticket.",
   "version": "0.1.0",
   "publisher": "shane-israel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shane-israel/linear-markdown-sync"
+  },
   "license": "MIT",
   "icon": "media/icon.png",
   "galleryBanner": {
