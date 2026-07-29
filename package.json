@@ -3,7 +3,7 @@
   "displayName": "Linear Markdown Sync",
   "description": "Sync Linear issues down into local markdown files, with screenshots and attachments, one folder per ticket.",
   "version": "0.1.0",
-  "publisher": "shane-israel",
+  "publisher": "shaneisrael",
   "repository": {
     "type": "git",
     "url": "https://github.com/shane-israel/linear-markdown-sync"
